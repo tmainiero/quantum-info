@@ -3,7 +3,7 @@
 AppendTo[$Path,NotebookDirectory[]];
 
 
-BeginPackage["BasicStable`"];
+BeginPackage["quantum-info`"];
 
 
 (* ::Title:: *)
@@ -28,7 +28,7 @@ Id::usage="Id[n] is a synonym for IdentityMatrix[n].";
 IdSparse::usage="IdSparse[n] generates an n x n identity matrix as a sparse array.";
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Sugar*)
 
 
@@ -360,7 +360,7 @@ Sum[rhoint[[All,All,k]],{k,1,dimTrace^2,dimTrace+1}]
 reducedDensityMat[rho_,subsys_,dim_]:=partialTrace[rho,Complement[Range@Length[dim],subsys],dim];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Extension of Operator by the Identity/Partial Cotrace*)
 
 
@@ -484,7 +484,7 @@ sysPermute[tensor[rho,IdStateSparse[dimExtend]], currentPerm, dimCurrent] ]
 (*Entropies and Related*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Inclusion-Exclusion Sum/Alternating Sum of Evaluations on Reduced Density Matrices*)
 
 
@@ -496,7 +496,7 @@ Total@Map[(-1)^(Length@#)*fun@reducedDensityMat[rho,#,dimprim]&,Subsets@Range[N]
 shiftedIndex[rho_,dimprim_,fun_]:=(-1)*index[rho,dimprim,fun];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*von Neumann Entropy and Mutual Information*)
 
 
@@ -510,8 +510,8 @@ vonNeumann[rho_]:=Tr[vNMatrixKernel@rho];
 mutualInfo[rho_,dimprim_]:=shiftedIndex[rho,dimprim,vonNeumann];
 
 
-(* ::Subsection:: *)
-(*Euler Characteristics of GNS and Commutant Complexes*)
+(* ::Subsection::Closed:: *)
+(*Euler Characteristics of GNS and Commutant Complexes (c.f. https://arxiv.org/abs/1901.02011)*)
 
 
 GNSDim[rho_?SquareMatrixQ]:=(Dimensions[rho][[1]])*MatrixRank[rho];
@@ -532,7 +532,7 @@ eulerCharGNS:=eulerCharG;
 eulerCharCom:=eulerCharE;
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*q-deformed quantities*)
 
 
